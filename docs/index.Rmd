@@ -1,45 +1,76 @@
 ---
-title: "Your A4 Report Title (TODO: Revise title)"
-author: "Your Name"
-date: '2022-11-01'
+title: "Visualization and Analysis of Incarceration Trends in the U.S. "
+author: "Bich Ngoc (Jada) Nguyen"
+date: '2022-11-16'
 output: html_document
 ---
 
-```{r echo=FALSE, eval=TRUE, message=FALSE}
-source("../source/a4-helpers.R")
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, message=F, warning=F, include=F}
 source("../source/analysis.R")
 ```
 
-## Abstract 
-[TODO: Include a short abstract (about 50 words)]
+## **Section 1: Introduction**
 
-# Test (TODO: Remove before submission!!)
-```{r echo=FALSE}
-q1_string <- test_query1()
-num <- 5
+  Systemic racism has long been in existence within the United States, especially within its prison system. Many social and political structures, including over-policing of individuals of color and the war on drugs have led to the disproportionate incarceration of minority communities. There has been little progress done by the government itself to address this issue mainly because the government itself consists of mostly white democrats and white republican who have vastly different view of how people of color, especially black people are being treated by the police. As a group who has been in the position of power throughout history, they are not equipped to understand the oppression in their system.
+
+This report aims to shed some light on the inequality experiences by the black population when it comes to incarceration. 
+
+- **Direct Stakeholders:** Those that are impacted by research into this data set are people who have been or will be incarcerated, especially people of color. By analyzing the data set, researchers, organizers, and government leaders are also direct stakeholders as well.  
+- **Indirect Stakeholders:** Many people can be benefited from the result of the research done on this data set. The general public and family of those incarcerated are some potential indirect stakeholders. 
+
+**Questions:**  
+
+- What is the trend of the total jail population in the United States like in the past 50 years?  
+- What is the trend of jail population in states with similar population compare to Washington?  
+- How does the ratio of black and white population in the United States compare to each other?  
+- How is the black and white prison population ratio distributed across different region in the United States?
+
+
+
+## **Section 2: Data summary** 
+
+The data set used contain data collected from 1970 to 2018. A total of `r num_observations` observations were recorded. The mean ratio of black prison population is `r mean_ratio`. The max ratio of black prison population is `r max_ratio`. The min ratio of black prison population is `r min_ratio`. 
+
+
+## **Section 3: Growth of the U.S. Prison Population**
+
+```{r analysis, out.width="100%", echo=FALSE, message=F, warning=F}
+plot_jail_pop_for_us()
 ```
-As you know, this is a markdown report. The [R Markdown Cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf) is **useful!**
 
-* Here's a test of a dynamic variable. Say **"`r q1_string`!!!** 
-* Here's another test. A vector
-of numbers: `r test_query2(num)`.
+The chart above displays the increase of jail population in the U.S.from 1970 to 2018. It helps answer the question as to what is the trend of the total jail population in the United States like in the past 50 years. According to the chart, ever since the beginning of the 1980s, there has been a steady increase in total jail population, peaking in 2008. Since then there has been a slow decrease but still remain pretty high compare to previous years.
 
-Recall that _{r echo=TRUE}_ can be used to display the code, 
-which is very useful when developing and debugging a report. Here's an example: 
 
-```{r echo=TRUE}
-num <- 5
-sum <- sum(test_query2(num))
-print(sum)
+
+## **Section 4: Growth of Prison Population by State**
+
+```{r analysis2, out.width="100%", echo=FALSE, message=F, warning=F}
+plot_jail_pop_by_state(c("NJ","VA","WA", "AZ", "MA"))
 ```
 
-## Introduction 
-[TODO]
+The chart above shows the the growth of prison population by state from 1970 to 2018. Beginning at 1980, total number of jail population increased more rapidly in all states. The purpose for the chosen state displayed above was to as the draw a comparison - What is the trend of jail population in states with similar population compare to Washington? New Jersey and Virginia has a higher population compare to Washington and Arizona and Massachusetts has a lower population. Starting in the mid 1990s, the increase of jail population is most state remains somewhat even except for Virginia, which experience a huge increase all the way until the mid 2000s.
 
-## Data Summary 
-[TODO]
 
-[TODO ... other sections ... See Canvas for details]
 
-_All the very best with your work!_
+## **Section 5: Prison Trend of Black and White Population**
 
+```{r analysis3, , figures-side, fig.show="hold", out.width="50%", echo=FALSE, message=F, warning=F}
+plot_prison_pop_by_race_over_year()
+plot_zoomed_prison_pop_by_race_over_year()
+```
+
+The visualization above displays the trend of black and white prison population by ratio where figure 5.1 contains that same scale for both demographic and figure 5.2 shows a more zoomed in chart. The goal of the visualization was to answer the question as to how the ratio of black and white population in the United States compare to each other.According to the charts, the ratio of black prison population from 1970 to 2018 is more than five times that of white prison population.
+
+
+## **Section 6: Black & White Prison Population Distribution Across the U.S.**
+
+```{r analysis4, figures-side, fig.show="hold", out.width="50%", echo=FALSE, message=F, warning=F}
+plot_black_pop_prison_distribution_by_state()
+plot_white_pop_prison_distribution_by_state()
+```
+
+The geographic visualization above shows two figures, figure 6.1 shows the ratio of black prison population by state and figure 6.2 shows the ratio of white prison population by state. The goal of the visualization is to answer the question of how is the black and white prison population ratio distributed across different region in the United States.The charts show that black prison population are more prominent in the mid west and south region of the united states and remain somewhat similar throughout the U.S. for white prison population.
